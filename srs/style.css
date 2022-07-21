@@ -1,0 +1,69 @@
+h5 {
+  font-weight: bold;
+  font-size: 25px;
+}
+.weather-container {
+  text-align: center;
+  padding: 20px;
+  margin: 30px;
+  font-family: "Arimo", sans-serif;
+  font-size: 20px;
+  background: linear-gradient(
+    218deg,
+    rgb(241, 238, 169) 0%,
+    rgb(69, 191, 248) 100%,
+    rgb(197, 231, 248) 100%
+  );
+  border-radius: 10px;
+  max-width: 70%;
+}
+.enter-city {
+  margin: 15px 10px;
+  text-align: left;
+}
+.card {
+  margin: 10px;
+  background: #e3f6f5;
+  border-radius: 10px;
+}
+.card-day {
+  background: #e5f3f2;
+}
+.tex-lef {
+  text-align: left;
+}
+.city,
+.day,
+.day-temp {
+  font-weight: bold;
+  font-size: 30px;
+}
+.country {
+  font-size: 25px;
+}
+.icon-today {
+  padding-top: 10px;
+}
+
+.btn-info {
+  color: #fff;
+}
+#celsius-link,
+#fahrenheit-link {
+  color: #212529;
+  text-decoration: none;
+}
+
+#celsius-link:hover,
+#fahrenheit-link:hover {
+  color: #007bff;
+  text-decoration: underline;
+}
+#celsius-link:active,
+#fahrenheit-link:active {
+  color: #007bff;
+  text-decoration: underline;
+}
+.target {
+  margin: 30px;
+}
