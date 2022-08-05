@@ -74,8 +74,8 @@ function displayForcast(response) {
                     forcastDay.weather[0].main
                   }.png" alt="" class="icon-forcast" id="icon" weight="15">
                   </span>
-                  <p class="card-text"><strong><span class = "weather-forcast-tempersture-max" id = "weather-forcast-tempersture-max"> ${celsiusTemperatureForcastMax}</span>°C </strong><span
-                      class = "weather-forcast-tempersture-min" id = "weather-forcast-tempersture-min"> ${celsiusTemperatureForcastMin}°C</p>
+                  <p class="card-text"><strong><span class = "weather-forcast-tempersture-max" id = "weather-forcast-tempersture-max"> ${celsiusTemperatureForcastMax}</span>°</strong><span
+                      class = "weather-forcast-tempersture-min" id = "weather-forcast-tempersture-min"> ${celsiusTemperatureForcastMin}</span>°</p>
                 </div>
               </div>
             </div>
@@ -166,6 +166,23 @@ function changeFahrenheit(event) {
   let temperatureElement = document.querySelector("#temp");
   let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
   temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
+
+  let forcastTemperatureMaxElement = document.querySelectorAll(
+    "#weather-forcast-tempersture-max"
+  );
+  forcastTemperatureMaxElement.forEach(function (item) {
+    let fahrTempMax = item.innerHTML;
+    item.innerHTML = Math.round((celsiusTemperatureForcastMax * 9) / 5 + 32);
+  });
+
+  let forcastTemperatureMinElement = document.querySelectorAll(
+    "#weather-forcast-tempersture-min"
+  );
+  forcastTemperatureMinElement.forEach(function (item) {
+    let farTempMin = item.innerHTML;
+    item.innerHTML = Math.round((celsiusTemperatureForcastMin * 9) / 5 + 32);
+  });
+
   celsiusLink.classList.remove("active");
   fahrenheitLink.classList.add("active");
 }
@@ -174,6 +191,22 @@ function changeCelsius(event) {
   event.preventDefault();
   let temperatureElement = document.querySelector("#temp");
   temperatureElement.innerHTML = Math.round(celsiusTemperature);
+  let forcastTemperatureMaxElement = document.querySelectorAll(
+    "#weather-forcast-tempersture-max"
+  );
+  forcastTemperatureMaxElement.forEach(function (item) {
+    let celsTempMax = item.innerHTML;
+    item.innerHTML = Math.round(celsiusTemperatureForcastMax);
+  });
+
+  let forcastTemperatureMinElement = document.querySelectorAll(
+    "#weather-forcast-tempersture-min"
+  );
+  forcastTemperatureMinElement.forEach(function (item) {
+    let celsTempMin = item.innerHTML;
+    item.innerHTML = Math.round(celsiusTemperatureForcastMin);
+  });
+
   celsiusLink.classList.add("active");
   fahrenheitLink.classList.remove("active");
 }
