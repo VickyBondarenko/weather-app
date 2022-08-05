@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>WeatherApp</title>
   <script src="https://kit.fontawesome.com/3654cfb876.js" crossorigin="anonymous"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,115 +17,76 @@
 </head>
 
 <body>
-  <div class="all">
-    <div class="weather-container">
-      <div class="row">
-        <div class="col-6">
-          <form class="enter-city" id="enter-city">
-            <input type="search" id="city-input" placeholder="Enter city" autofocus="on" />
-            <input type="submit" class="btn btn-primary" value="Change" />
-            <button type="button" class="btn btn-info">Current</button>
-          </form>
-          <div class="card tex-lef">
-            <div class="card-body">
-              <span class="city" id="city"> Dnipro</span><span class="country"> </span>
-            </div>
-          </div>
-          <div class="card tex-lef">
-            <div class="card-body">
-              <div>
-                <span id="current-weather">
-                  Sunni skies</span>
-                <br>
-                Humidity: <span id="humidity"> </span> %
-                <br>
-                Winds: <span id="wind"> </span> km/h
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card">
-            <div class="card-body">
-              <div class="day-temp">
-                <span class="temperature" id="temp">
-                  40
-                </span>
-                <span class="units">
-                  <a href="#" id="celsius-link">°C</a> |
-                  <a href="#" id="fahrenheit-link">°F</a>
-                </span>
-              </div>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="card-body">
-              <div class="day" id="dayTime">
-                Wen 13:28
-              </div>
-              <div class="date" id="date">
-                25.06.2022
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <span><img src="" alt="sun" class="icon-today" id="icon" weight="200">
-          </span>
-        </div>
+  <div class="container">
+    <div class="weather-app-wraper">
+      <div class="weather-container" id="weather-container">
+        <form class="enter-city" id="enter-city">
+          <input type="search" id="city-input" placeholder="Enter city" autofocus="on" />
+          <input type="submit" class="btn btn-primary" value="Change" />
+          <button type="button" class="btn btn-info">Current</button>
+        </form>
         <div class="row">
-          <div class="col">
-            <div class="card card-day">
+          <div class="col-5">
+            <div class="card tex-lef">
               <div class="card-body">
-                <h5 class="card-title">Sat</h5>
-                <img src="images/icons8-partly-cloudy-day-30.png" alt="cloudy-day">
-                <p class="card-text"><strong> 25°C </strong>/ 16°C</p>
+                <span class="city" id="city"> Dnipro</span><span class="country"> </span>
               </div>
             </div>
-          </div>
-          <div class="col">
-            <div class="card card-day">
-              <div class=" card-body">
-                <h5 class="card-title">Sun</h5>
-                <img src="images/icons8-sun-30.png" alt="sun-day">
-                <p class="card-text"><strong> 32°C </strong>/ 17°C</p>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card card-day">
+            <div class="card tex-lef">
               <div class="card-body">
-                <h5 class="card-title">Mon</h5>
-                <img src="images/icons8-rainfall-30.png" alt="rainfall-day">
-                <p class="card-text"><strong> 19°C </strong>/ 10°C</p>
+                <div>
+                  <span id="current-weather">
+                  </span>
+                  <br>
+                  Humidity: <span id="humidity"> </span> %
+                  <br>
+                  Winds: <span id="wind"> </span> km/h
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-4 description">
+            <div class="card">
+              <div class="card-body">
+                <div class="day-temp">
+                  <span class="temperature" id="temp">
+
+                  </span>
+                  <span class="units">
+                    <a href="#" id="celsius-link" class="active">°C</a> |
+                    <a href="#" id="fahrenheit-link">°F</a>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body">
+                <div class="day" id="dayTime">
+
+                </div>
+                <div class="date" id="date">
+
+                </div>
               </div>
             </div>
           </div>
           <div class="col">
-            <div class="card card-day">
+            <div class="card">
               <div class="card-body">
-                <h5 class="card-title">Tue</h5>
-                <img src="images/icons8-partly-cloudy-day-30.png" alt="cloudy-day">
-                <p class="card-text"><strong> 24°C </strong>/ 13°C</p>
+                <span><img src="" alt="sun" class="icon-today" id="icon">
+                </span>
               </div>
             </div>
           </div>
-          <div class="col">
-            <div class="card card-day">
-              <div class="card-body">
-                <h5 class="card-title">Wed</h5>
-                <img src="images/icons8-partly-cloudy-day-30.png" alt="cloudy-day">
-                <p class="card-text"><strong> 25°C </strong>/ 11°C</p>
-              </div>
-            </div>
-          </div>
+        </div>
+        <div class="weather-forcast" id="forcast">
+
         </div>
       </div>
+      <small><span class="target"><a href="https://github.com/VickyBondarenko/weather-app" target="_blank">Open-source
+            code</a>, by Vicky Bondarenko</span></small>
+      </a>
     </div>
-    <small><span class="target"><a href="https://github.com/VickyBondarenko/weather-app" target="_blank">Open-source
-          code</a>, by Vicky Bondarenko</span></small>
-    </a>
   </div>
   <script src="srs/app.js"></script>
 </body>

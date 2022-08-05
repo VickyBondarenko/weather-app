@@ -46,6 +46,53 @@ function formatDate(date) {
   return `${dates}.${month}.${year}`;
 }
 
+function formatday(timeStemp) {
+  let date = new Date(timeStemp * 1000);
+  let day = date.getDay();
+  let days = [`Sun`, `Mon`, `Tue`, `Wed`, `Thu`, `Fri`, `Sat`];
+  return days[day];
+}
+
+function displayForcast(response) {
+  let forcast = response.data.daily;
+
+  let forcastElement = document.querySelector("#forcast");
+  let forcastHTML = `<div class="row">`;
+
+  forcast.forEach(function (forcastDay, index) {
+    celsiusTemperatureForcastMax = Math.round(forcastDay.temp.max);
+    celsiusTemperatureForcastMin = Math.round(forcastDay.temp.min);
+
+    if (index < 5) {
+      forcastHTML =
+        forcastHTML +
+        ` <div class="col">
+              <div class="card card-day">
+                <div class="card-body">
+                  <h5 class="card-title">${formatday(forcastDay.dt)}</h5>
+                  <span><img src="images/${
+                    forcastDay.weather[0].main
+                  }.png" alt="" class="icon-forcast" id="icon" weight="15">
+                  </span>
+                  <p class="card-text"><strong><span class = "weather-forcast-tempersture-max" id = "weather-forcast-tempersture-max"> ${celsiusTemperatureForcastMax}</span>°C </strong><span
+                      class = "weather-forcast-tempersture-min" id = "weather-forcast-tempersture-min"> ${celsiusTemperatureForcastMin}°C</p>
+                </div>
+              </div>
+            </div>
+          `;
+    }
+  });
+  forcastHTML = forcastHTML + `</div>`;
+  forcastElement.innerHTML = forcastHTML;
+}
+
+function getForcast(coordinates) {
+  console.log(coordinates);
+  let apiKey = "f127cb208f2bd0106804f1fe6bc22525";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayForcast);
+}
+
 function showTemperature(response) {
   celsiusTemperature = response.data.main.temp;
   let temp = Math.round(celsiusTemperature);
@@ -56,7 +103,7 @@ function showTemperature(response) {
   let currentWeather = document.querySelector("#current-weather");
   currentWeather.innerHTML = weather;
 
-  let wind = Math.round(response.data.wind.speed * 3.6);
+  let wind = Math.round(response.data.wind.speed);
   let currentWind = document.querySelector("#wind");
   currentWind.innerHTML = wind;
 
@@ -69,10 +116,19 @@ function showTemperature(response) {
   currentCity.innerHTML = city;
 
   let iconElement = document.querySelector("#icon");
-  iconElement.setAttribute(
-    "src",
-    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
-  );
+  iconElement.setAttribute("src", `images/${weather}.png`);
+
+  getForcast(response.data.coord);
+
+  function changeBackground(color) {
+    document.getElementById("weather-container").style.background = color;
+  }
+
+  if (response.data.weather[0].main === "Clear") {
+    changeBackground(
+      "linear-gradient(218deg, rgb(241, 288, 169) 0%, rgb(69, 191, 248) 100%,rgb(197, 231, 248) 100%)"
+    );
+  }
 }
 
 function search(city) {
@@ -85,7 +141,6 @@ function search(city) {
 
 function handleSubmit(event) {
   event.preventDefault();
-
   let curentCityElement = document.querySelector("#city-input");
   let city = curentCityElement.value;
   search(city);
@@ -124,6 +179,8 @@ function changeCelsius(event) {
 }
 
 let celsiusTemperature = null;
+let celsiusTemperatureForcastMax = null;
+let celsiusTemperatureForcastMin = null;
 
 let fahrenheitLink = document.querySelector("#fahrenheit-link");
 fahrenheitLink.addEventListener("click", changeFahrenheit);
@@ -133,11 +190,14 @@ celsiusLink.addEventListener("click", changeCelsius);
 
 let button = document.querySelector("button");
 button.addEventListener("click", getCurrentPosition);
+
 let currentTime = new Date();
 let dayTimeElement = document.querySelector("#dayTime");
 dayTimeElement.innerHTML = formatDayTime(currentTime);
 let dateElement = document.querySelector("#date");
 dateElement.innerHTML = formatDate(currentTime);
+
 let searchForm = document.querySelector("#enter-city");
 searchForm.addEventListener("submit", handleSubmit);
+
 search("Dnipro");

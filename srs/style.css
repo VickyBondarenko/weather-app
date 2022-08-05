@@ -9,10 +9,9 @@ h5 {
   font-family: "Arimo", sans-serif;
   font-size: 20px;
   background: linear-gradient(
-    218deg,
-    rgb(241, 238, 169) 0%,
-    rgb(69, 191, 248) 100%,
-    rgb(197, 231, 248) 100%
+    19deg,
+    rgb(60, 165, 157) 0%,
+    rgb(244, 246, 249) 100%
   );
   border-radius: 10px;
   max-width: 900px;
@@ -25,45 +24,70 @@ h5 {
   margin: 10px;
   background: rgba(229, 243, 242, 0.3);
   border-radius: 10px;
+  padding: 5px;
 }
-.card-day {
-  background: rgba(229, 243, 242, 0.3);
-}
+
 .tex-lef {
   text-align: left;
 }
-.city,
-.day,
-.day-temp {
+.city {
   font-weight: bold;
   font-size: 30px;
-}
-.country {
-  font-size: 25px;
-}
-.icon-today {
-  padding-top: 10px;
 }
 
 .btn-info {
   color: #fff;
 }
-#celsius-link,
-#fahrenheit-link {
+
+.day-temp .active {
   color: #212529;
+  cursor: default;
   text-decoration: none;
 }
-
-#celsius-link:hover,
-#fahrenheit-link:hover {
-  color: #007bff;
-  text-decoration: underline;
-}
-#celsius-link:active,
-#fahrenheit-link:active {
-  color: #007bff;
+.day-temp .active:hover {
   text-decoration: underline;
 }
 .target {
   margin: 30px;
+}
+.date {
+  font-size: 20px;
+}
+.day {
+  font-weight: bold;
+  font-size: 25px;
+}
+.units {
+  font-weight: normal;
+  font-size: 20px;
+  position: relative;
+  top: -10px;
+}
+.day-temp {
+  font-weight: bold;
+  font-size: 40px;
+}
+.card-day {
+  background: rgba(229, 243, 242, 0.3);
+  font-size: 20px;
+  margin: 10px;
+  text-align: center;
+  position: relative;
+  transition: all 150ms ease-in-out;
+}
+.card-body {
+  margin: 0px;
+  padding: 5px;
+}
+
+.icon-forcast {
+  max-width: 60px;
+  display: block;
+  margin: 0 auto;
+}
+
+.icon-today {
+  max-width: 150px;
+  display: block;
+  margin: 0 auto;
 }
