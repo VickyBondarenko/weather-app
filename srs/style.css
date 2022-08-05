@@ -91,3 +91,6 @@ h5 {
   display: block;
   margin: 0 auto;
 }
+#city-input {
+  border-radius: 10px;
+}
